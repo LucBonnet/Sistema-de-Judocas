@@ -9,7 +9,6 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import main.java.org.fpij.jitakyoei.model.beans.Aluno;
 import main.java.org.fpij.jitakyoei.model.beans.Endereco;
 import main.java.org.fpij.jitakyoei.model.beans.Entidade;
 import main.java.org.fpij.jitakyoei.model.beans.Filiado;
@@ -96,5 +95,27 @@ public class ProfessorDaoTest {
 
     assertEquals("Academia 1", professorDao.get(professor).getEntidades().get(0).getNome());
     assertEquals("Academia 2", professorDao.get(professor).getEntidades().get(1).getNome());
+  }
+
+  @Test
+  public void atualizarProfessorTest() {
+    clearDatabase();
+
+    professorDao.save(professor);
+
+    assertEquals("Matheus", professor.getFiliado().getNome());
+    assertEquals(1, professorDao.list().size());
+
+    Filiado f2 = new Filiado();
+    f2.copyProperties(f1);
+
+    professor.setFiliado(f2);
+    professor.getFiliado().setNome("Nome");
+    professorDao.save(professor);
+
+    assertEquals("Nome", professorDao.get(professor).getFiliado().getNome());
+    assertEquals(1, professorDao.list().size());
+
+    professor.setFiliado(f1);
   }
 }

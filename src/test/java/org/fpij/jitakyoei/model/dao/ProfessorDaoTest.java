@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -155,5 +156,30 @@ public class ProfessorDaoTest {
     assertEquals(2, professorDao.get(professor1).getEntidades().size());
     assertEquals("Academia 2", professorDao.get(professor1).getEntidades().get(0).getNome());
     assertEquals(1, professorDao.list().size());
+  }
+
+  @Test
+  public void buscarProfessor() {
+    clearDatabase();
+    professorDao.save(professor);
+
+    Filiado f = new Filiado();
+    f.setNome("Matheus");
+    Professor p = new Professor();
+    p.setFiliado(f);
+
+    List<Professor> result = professorDao.search(p);
+    assertEquals(1, result.size());
+    assertEquals("206.561.170-79", result.get(0).getFiliado().getCpf());
+
+    f = new Filiado();
+    f.setNome("Mathe");
+    p = new Professor();
+    p.setFiliado(f);
+    result = professorDao.search(p);
+    assertEquals(0, result.size());
+
+    clearDatabase();
+    assertEquals(0, professorDao.search(p).size());
   }
 }

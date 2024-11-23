@@ -118,4 +118,42 @@ public class ProfessorDaoTest {
 
     professor.setFiliado(f1);
   }
+
+  @Test
+  public void atualizarEntidadesDoProfessorTest() {
+    clearDatabase();
+
+    Professor professor1 = new Professor();
+    professor1.setFiliado(f1);
+
+    List<Entidade> entidades1 = new ArrayList<>();
+    entidades1.add(entidades.get(0));
+    entidades1.add(entidades.get(1));
+
+    professor1.setEntidades(entidades1);
+    professorDao.save(professor1);
+
+    assertEquals(2, professorDao.get(professor1).getEntidades().size());
+    assertEquals(1, professorDao.list().size());
+
+    Entidade e1 = new Entidade();
+    e1.setNome("Academia 3");
+    e1.setTelefone1("(33)33333-3333");
+
+    Professor p1 = professorDao.get(professor1);
+    p1.getEntidades().add(e1);
+
+    professorDao.save(p1);
+
+    assertEquals(3, professorDao.get(professor1).getEntidades().size());
+    assertEquals(1, professorDao.list().size());
+
+    p1 = professorDao.get(professor1);
+    p1.getEntidades().remove(0);
+    professorDao.save(p1);
+
+    assertEquals(2, professorDao.get(professor1).getEntidades().size());
+    assertEquals("Academia 2", professorDao.get(professor1).getEntidades().get(0).getNome());
+    assertEquals(1, professorDao.list().size());
+  }
 }

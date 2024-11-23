@@ -1,6 +1,8 @@
 package test.java.org.fpij.jitakyoei.model.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 import java.util.List;
@@ -171,6 +173,29 @@ public class AlunoDaoTest {
 
 		clearDatabase();
 		assertEquals(0, alunoDao.search(a).size());
+	}
+
+	@Test
+	public void compararAlunosTest() {
+		clearDatabase();
+
+		alunoDao.save(aluno);
+
+		Filiado f1 = new Filiado();
+		f1.setNome("Aécio");
+		Aluno a1 = new Aluno();
+		a1.setFiliado(f1);
+
+		List<Aluno> result1 = alunoDao.search(a1);
+		assertTrue(result1.get(0).equals(aluno));
+
+		Aluno aluno2 = new Aluno();
+		aluno2.setFiliado(f1);
+		aluno2.setProfessor(professor);
+		aluno2.setEntidade(entidade);
+		alunoDao.save(aluno2);
+
+		assertFalse(aluno2.equals(aluno));
 	}
 
 	@AfterClass

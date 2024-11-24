@@ -36,6 +36,12 @@ jobs:
     - name: Build with Maven
       run: mvn clean verify --file pom.xml
 
+    - name: Generate JaCoCo Coverage Badge
+      uses: cicirello/jacoco-badge-generator@v3
+      with:
+        jacoco-csv-path: target/site/jacoco/jacoco.csv
+        badge-output-path: coverage/badge.svg
+
     - name: Upload JaCoCo Report as Artifact
       uses: actions/upload-artifact@v3
       with:

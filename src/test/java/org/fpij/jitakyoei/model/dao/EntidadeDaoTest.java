@@ -90,4 +90,27 @@ public class EntidadeDaoTest {
     e1 = entidadeDao.get(entidade1);
     assertEquals("Nome entidade", e1.getNome());
   }
+
+  @Test
+  public void buscarEntidadeTest() {
+    clearDatabase();
+
+    entidadeDao.save(entidade);
+
+    Entidade e = new Entidade();
+    e.setNome("Academia 1");
+
+    List<Entidade> result = entidadeDao.search(e);
+    assertEquals(1, result.size());
+    assertEquals("60.580.350/0001-04", result.get(0).getCnpj());
+
+    e = new Entidade();
+    e.setNome("Academia");
+
+    result = entidadeDao.search(e);
+    assertEquals(0, result.size());
+
+    clearDatabase();
+    assertEquals(0, entidadeDao.list().size());
+  }
 }

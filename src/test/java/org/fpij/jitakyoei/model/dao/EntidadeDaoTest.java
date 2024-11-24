@@ -67,4 +67,27 @@ public class EntidadeDaoTest {
     assertEquals("PI", entidadeDao.get(entidade).getEndereco().getEstado());
     assertEquals("Rua Des. Berilo Mota", entidadeDao.get(entidade).getEndereco().getRua());
   }
+
+  @Test
+  public void atualizarEntidadeTest() {
+    clearDatabase();
+
+    assertEquals(0, entidadeDao.list().size());
+
+    Entidade entidade1 = new Entidade();
+    entidade1.copyProperties(entidade);
+
+    entidadeDao.save(entidade1);
+
+    assertEquals(1, entidadeDao.list().size());
+    assertEquals("Academia 1", entidadeDao.get(entidade1).getNome());
+
+    Entidade e1 = entidadeDao.get(entidade1);
+    e1.setNome("Nome entidade");
+    entidadeDao.save(e1);
+    assertEquals(1, entidadeDao.list().size());
+
+    e1 = entidadeDao.get(entidade1);
+    assertEquals("Nome entidade", e1.getNome());
+  }
 }

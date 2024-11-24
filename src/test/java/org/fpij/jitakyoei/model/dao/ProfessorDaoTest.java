@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import main.java.org.fpij.jitakyoei.model.beans.Aluno;
 import main.java.org.fpij.jitakyoei.model.beans.Endereco;
 import main.java.org.fpij.jitakyoei.model.beans.Entidade;
 import main.java.org.fpij.jitakyoei.model.beans.Filiado;
@@ -24,6 +24,8 @@ public class ProfessorDaoTest {
   private static Filiado f1;
   private static List<Entidade> entidades;
   private static Endereco endereco;
+  private static DAO<Aluno> alunoDao;
+  private static Aluno aluno;
 
   @BeforeClass
   public static void setUp() {
@@ -58,11 +60,24 @@ public class ProfessorDaoTest {
     e2.setTelefone1("(22)22222-2222");
     entidades.add(e2);
 
+    Filiado f2 = new Filiado();
+    f2.setNome("Aécio");
+    f2.setCpf("036.464.453-27");
+    f2.setDataNascimento(new Date());
+    f2.setDataCadastro(new Date());
+    f2.setId(80921L);
+    f2.setEndereco(endereco);
+
     professor = new Professor();
     professor.setFiliado(f1);
     professor.setEntidades(entidades);
 
+    aluno = new Aluno();
+    aluno.setFiliado(f2);
+    aluno.setEntidade(e1);
+
     professorDao = new DAOImpl<Professor>(Professor.class);
+    alunoDao = new DAOImpl<Aluno>(Aluno.class);
   }
 
   public static void clearDatabase() {
@@ -159,7 +174,7 @@ public class ProfessorDaoTest {
   }
 
   @Test
-  public void buscarProfessor() {
+  public void buscarProfessorTest() {
     clearDatabase();
     professorDao.save(professor);
 
@@ -181,5 +196,17 @@ public class ProfessorDaoTest {
 
     clearDatabase();
     assertEquals(0, professorDao.search(p).size());
+  }
+
+  @Test
+  public void adicionarProfessorQueJaEraAlunoTest() {
+    clearDatabase();
+
+    alunoDao.save(aluno);
+    Professor p1 = new Professor();
+    p1.setFiliado(aluno.getFiliado());
+
+    professorDao.save(p1);
+    assertEquals("Aécio", professorDao.get(p1).getFiliado().getNome());
   }
 }

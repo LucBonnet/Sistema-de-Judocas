@@ -29,8 +29,9 @@ import net.java.dev.genesis.annotation.ViewHandler;
  */
 @ViewHandler
 public class MainAppFrame extends JFrame {
-		
+
 	private static final long serialVersionUID = 1L;
+
 	public MainAppFrame() {
 		initComponents();
 	}
@@ -40,7 +41,7 @@ public class MainAppFrame extends JFrame {
 	}
 
 	private void thisWindowOpened(WindowEvent e) {
-//		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		// this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 
 	public JTabbedPane getTabbedPane() {
@@ -53,7 +54,8 @@ public class MainAppFrame extends JFrame {
 	}
 
 	private void initComponents() {
-		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+		// JFormDesigner - Component initialization - DO NOT MODIFY
+		// //GEN-BEGIN:initComponents
 		mainMenuBar = new JMenuBar();
 		menu1 = new JMenu();
 		cadastrarAlunoMenuItem = new JMenuItem();
@@ -88,16 +90,17 @@ public class MainAppFrame extends JFrame {
 		mainPanel = new JPanel();
 		botaoSplash = new JButton();
 
-		//======== this ========
+		// ======== this ========
 		setTitle("JitaKyoei - Federa\u00e7\u00e3o Piauiense de Jud\u00f4");
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setIconImage(new ImageIcon("C:\\Documents and Settings\\User\\Meus documentos\\[ADS-IV]\\AOO\\Trabalho Final\\icon-logo.png").getImage());
+		setIconImage(new ImageIcon(getClass().getResource("/icon-logo.png")).getImage());
 		setName("this");
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent e) {
 				thisWindowClosed(e);
 			}
+
 			@Override
 			public void windowOpened(WindowEvent e) {
 				thisWindowOpened(e);
@@ -106,28 +109,28 @@ public class MainAppFrame extends JFrame {
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
-		//======== mainMenuBar ========
+		// ======== mainMenuBar ========
 		{
 			mainMenuBar.setName("mainMenuBar");
 
-			//======== menu1 ========
+			// ======== menu1 ========
 			{
 				menu1.setText("Cadastrar");
 				menu1.setName("menu1");
 
-				//---- cadastrarAlunoMenuItem ----
+				// ---- cadastrarAlunoMenuItem ----
 				cadastrarAlunoMenuItem.setText("Aluno");
 				cadastrarAlunoMenuItem.setIcon(new ImageIcon(getClass().getResource("/aluno_add-16.png")));
 				cadastrarAlunoMenuItem.setName("cadastrarAlunoMenuItem");
 				menu1.add(cadastrarAlunoMenuItem);
 
-				//---- cadastrarProfessorMenuItem ----
+				// ---- cadastrarProfessorMenuItem ----
 				cadastrarProfessorMenuItem.setText("Professor");
 				cadastrarProfessorMenuItem.setIcon(new ImageIcon(getClass().getResource("/teacher_add-16.png")));
 				cadastrarProfessorMenuItem.setName("cadastrarProfessorMenuItem");
 				menu1.add(cadastrarProfessorMenuItem);
 
-				//---- cadastrarEntidadeMenuItem ----
+				// ---- cadastrarEntidadeMenuItem ----
 				cadastrarEntidadeMenuItem.setText("Entidade");
 				cadastrarEntidadeMenuItem.setIcon(new ImageIcon(getClass().getResource("/entidade_add-16.png")));
 				cadastrarEntidadeMenuItem.setName("cadastrarEntidadeMenuItem");
@@ -135,24 +138,24 @@ public class MainAppFrame extends JFrame {
 			}
 			mainMenuBar.add(menu1);
 
-			//======== menu4 ========
+			// ======== menu4 ========
 			{
 				menu4.setText("Buscar");
 				menu4.setName("menu4");
 
-				//---- buscarAlunoMenuItem ----
+				// ---- buscarAlunoMenuItem ----
 				buscarAlunoMenuItem.setText("Aluno");
 				buscarAlunoMenuItem.setIcon(new ImageIcon(getClass().getResource("/aluno_search-16.png")));
 				buscarAlunoMenuItem.setName("buscarAlunoMenuItem");
 				menu4.add(buscarAlunoMenuItem);
 
-				//---- buscarProfessorMenuItem ----
+				// ---- buscarProfessorMenuItem ----
 				buscarProfessorMenuItem.setText("Professor");
 				buscarProfessorMenuItem.setIcon(new ImageIcon(getClass().getResource("/teacher_search-16.png")));
 				buscarProfessorMenuItem.setName("buscarProfessorMenuItem");
 				menu4.add(buscarProfessorMenuItem);
 
-				//---- buscarEntidadeMenuItem ----
+				// ---- buscarEntidadeMenuItem ----
 				buscarEntidadeMenuItem.setText("Entidade");
 				buscarEntidadeMenuItem.setIcon(new ImageIcon(getClass().getResource("/entidade_search-16.png")));
 				buscarEntidadeMenuItem.setName("buscarEntidadeMenuItem");
@@ -160,24 +163,24 @@ public class MainAppFrame extends JFrame {
 			}
 			mainMenuBar.add(menu4);
 
-			//======== menu5 ========
+			// ======== menu5 ========
 			{
 				menu5.setText("Alterar");
 				menu5.setName("menu5");
 
-				//---- alterarAlunoMenuItem ----
+				// ---- alterarAlunoMenuItem ----
 				alterarAlunoMenuItem.setText("Aluno");
 				alterarAlunoMenuItem.setIcon(new ImageIcon(getClass().getResource("/aluno_edit-16.png")));
 				alterarAlunoMenuItem.setName("alterarAlunoMenuItem");
 				menu5.add(alterarAlunoMenuItem);
 
-				//---- alterarProfessorMenuItem ----
+				// ---- alterarProfessorMenuItem ----
 				alterarProfessorMenuItem.setText("Professor");
 				alterarProfessorMenuItem.setIcon(new ImageIcon(getClass().getResource("/teacher_edit-16.png")));
 				alterarProfessorMenuItem.setName("alterarProfessorMenuItem");
 				menu5.add(alterarProfessorMenuItem);
 
-				//---- alterarEntidadeMenuItem ----
+				// ---- alterarEntidadeMenuItem ----
 				alterarEntidadeMenuItem.setText("Entidade");
 				alterarEntidadeMenuItem.setIcon(new ImageIcon(getClass().getResource("/entidade_edit-16.png")));
 				alterarEntidadeMenuItem.setName("alterarEntidadeMenuItem");
@@ -185,30 +188,30 @@ public class MainAppFrame extends JFrame {
 			}
 			mainMenuBar.add(menu5);
 
-			//======== menu3 ========
+			// ======== menu3 ========
 			{
 				menu3.setText("Relat\u00f3rios");
 				menu3.setName("menu3");
 
-				//---- menuItem6 ----
+				// ---- menuItem6 ----
 				menuItem6.setText("Aniversariantes do M\u00eas");
 				menuItem6.setIcon(new ImageIcon(getClass().getResource("/calendario.png")));
 				menuItem6.setName("menuItem6");
 				menu3.add(menuItem6);
 
-				//---- menuItem5 ----
+				// ---- menuItem5 ----
 				menuItem5.setText("Relat\u00f3rio de Alunos");
 				menuItem5.setIcon(new ImageIcon(getClass().getResource("/relatorio-16.png")));
 				menuItem5.setName("menuItem5");
 				menu3.add(menuItem5);
 
-				//---- menuItem7 ----
+				// ---- menuItem7 ----
 				menuItem7.setText("Relat\u00f3rio de Professores");
 				menuItem7.setIcon(new ImageIcon(getClass().getResource("/relatorio-16.png")));
 				menuItem7.setName("menuItem7");
 				menu3.add(menuItem7);
 
-				//---- menuItem8 ----
+				// ---- menuItem8 ----
 				menuItem8.setText("Relat\u00f3rio de Institui\u00e7\u00f5es");
 				menuItem8.setIcon(new ImageIcon(getClass().getResource("/relatorio-16.png")));
 				menuItem8.setName("menuItem8");
@@ -216,12 +219,12 @@ public class MainAppFrame extends JFrame {
 			}
 			mainMenuBar.add(menu3);
 
-			//======== menu2 ========
+			// ======== menu2 ========
 			{
 				menu2.setText("Ajuda");
 				menu2.setName("menu2");
 
-				//---- sobreMenuItem ----
+				// ---- sobreMenuItem ----
 				sobreMenuItem.setText("Sobre");
 				sobreMenuItem.setIcon(new ImageIcon(getClass().getResource("/info.png")));
 				sobreMenuItem.setName("sobreMenuItem");
@@ -231,62 +234,62 @@ public class MainAppFrame extends JFrame {
 		}
 		setJMenuBar(mainMenuBar);
 
-		//======== mainToolBar ========
+		// ======== mainToolBar ========
 		{
 			mainToolBar.setFloatable(false);
 			mainToolBar.setName("mainToolBar");
 
-			//---- cadastrarAlunoIcon ----
+			// ---- cadastrarAlunoIcon ----
 			cadastrarAlunoIcon.setIcon(new ImageIcon(getClass().getResource("/aluno_add.png")));
 			cadastrarAlunoIcon.setToolTipText("Novo Aluno");
 			cadastrarAlunoIcon.setName("cadastrarAlunoIcon");
 			mainToolBar.add(cadastrarAlunoIcon);
 
-			//---- alterarAlunoIcon ----
+			// ---- alterarAlunoIcon ----
 			alterarAlunoIcon.setIcon(new ImageIcon(getClass().getResource("/aluno_edit.png")));
 			alterarAlunoIcon.setToolTipText("Editar Aluno");
 			alterarAlunoIcon.setName("alterarAlunoIcon");
 			mainToolBar.add(alterarAlunoIcon);
 
-			//---- buscarAlunoIcon ----
+			// ---- buscarAlunoIcon ----
 			buscarAlunoIcon.setToolTipText("Buscar Aluno");
 			buscarAlunoIcon.setIcon(new ImageIcon(getClass().getResource("/aluno_search.png")));
 			buscarAlunoIcon.setName("buscarAlunoIcon");
 			mainToolBar.add(buscarAlunoIcon);
 			mainToolBar.addSeparator();
 
-			//---- cadastrarProfessorIcon ----
+			// ---- cadastrarProfessorIcon ----
 			cadastrarProfessorIcon.setIcon(new ImageIcon(getClass().getResource("/teacher_add.png")));
 			cadastrarProfessorIcon.setToolTipText("Novo Professor");
 			cadastrarProfessorIcon.setName("cadastrarProfessorIcon");
 			mainToolBar.add(cadastrarProfessorIcon);
 
-			//---- alterarProfessorIcon ----
+			// ---- alterarProfessorIcon ----
 			alterarProfessorIcon.setIcon(new ImageIcon(getClass().getResource("/teacher_edit.png")));
 			alterarProfessorIcon.setToolTipText("Editar Professor");
 			alterarProfessorIcon.setName("alterarProfessorIcon");
 			mainToolBar.add(alterarProfessorIcon);
 
-			//---- buscarProfessorIcon ----
+			// ---- buscarProfessorIcon ----
 			buscarProfessorIcon.setIcon(new ImageIcon(getClass().getResource("/teacher_search.png")));
 			buscarProfessorIcon.setToolTipText("Buscar Professor");
 			buscarProfessorIcon.setName("buscarProfessorIcon");
 			mainToolBar.add(buscarProfessorIcon);
 			mainToolBar.addSeparator();
 
-			//---- cadastrarEntidadeIcon ----
+			// ---- cadastrarEntidadeIcon ----
 			cadastrarEntidadeIcon.setIcon(new ImageIcon(getClass().getResource("/entidade_add.png")));
 			cadastrarEntidadeIcon.setToolTipText("Nova Entidade");
 			cadastrarEntidadeIcon.setName("cadastrarEntidadeIcon");
 			mainToolBar.add(cadastrarEntidadeIcon);
 
-			//---- alterarEntidadeIcon ----
+			// ---- alterarEntidadeIcon ----
 			alterarEntidadeIcon.setIcon(new ImageIcon(getClass().getResource("/entidade_edit.png")));
 			alterarEntidadeIcon.setToolTipText("Editar Entidade");
 			alterarEntidadeIcon.setName("alterarEntidadeIcon");
 			mainToolBar.add(alterarEntidadeIcon);
 
-			//---- buscarEntidadeIcon ----
+			// ---- buscarEntidadeIcon ----
 			buscarEntidadeIcon.setIcon(new ImageIcon(getClass().getResource("/entidade_search.png")));
 			buscarEntidadeIcon.setToolTipText("Buscar Entidade");
 			buscarEntidadeIcon.setName("buscarEntidadeIcon");
@@ -294,16 +297,16 @@ public class MainAppFrame extends JFrame {
 		}
 		contentPane.add(mainToolBar, BorderLayout.NORTH);
 
-		//======== tabbedPane ========
+		// ======== tabbedPane ========
 		{
 			tabbedPane.setName("tabbedPane");
 
-			//======== mainPanel ========
+			// ======== mainPanel ========
 			{
 				mainPanel.setName("mainPanel");
 				mainPanel.setLayout(new BorderLayout());
 
-				//---- botaoSplash ----
+				// ---- botaoSplash ----
 				botaoSplash.setIcon(new ImageIcon(getClass().getResource("/FPIJ-splash.png")));
 				botaoSplash.setName("botaoSplash");
 				mainPanel.add(botaoSplash, BorderLayout.CENTER);
@@ -313,10 +316,10 @@ public class MainAppFrame extends JFrame {
 		}
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		setSize(965, 720);
-		// JFormDesigner - End of component initialization  //GEN-END:initComponents
+		// JFormDesigner - End of component initialization //GEN-END:initComponents
 	}
 
-	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+	// JFormDesigner - Variables declaration - DO NOT MODIFY //GEN-BEGIN:variables
 	private JMenuBar mainMenuBar;
 	private JMenu menu1;
 	private JMenuItem cadastrarAlunoMenuItem;
@@ -350,5 +353,5 @@ public class MainAppFrame extends JFrame {
 	private JTabbedPane tabbedPane;
 	private JPanel mainPanel;
 	private JButton botaoSplash;
-	// JFormDesigner - End of variables declaration  //GEN-END:variables
+	// JFormDesigner - End of variables declaration //GEN-END:variables
 }

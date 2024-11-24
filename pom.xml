@@ -211,8 +211,17 @@
   <build>
 
     <plugins>
-      <!-- clean lifecycle, see
-                https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <mainClass>main.java.org.fpij.jitakyoei.util.Main</mainClass>
+          <arguments>
+          </arguments>
+        </configuration>
+      </plugin>
       <plugin>
         <artifactId>maven-clean-plugin</artifactId>
         <version>3.1.0</version>
@@ -274,7 +283,17 @@
           </execution>
         </executions>
       </plugin>
+
     </plugins>
+
+    <resources>
+      <resource>
+        <directory>src/main/resources/icones/icon_16x16</directory>
+      </resource>
+      <resource>
+        <directory>src/main/resources/icones/icon_32x32</directory>
+      </resource>
+    </resources>
   </build>
 
 </project>

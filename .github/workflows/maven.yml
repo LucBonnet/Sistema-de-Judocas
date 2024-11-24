@@ -37,7 +37,7 @@ jobs:
       run: mvn clean verify --file pom.xml
 
     - name: Generate JaCoCo Coverage Badge
-      uses: cicirello/jacoco-badge-generator@v3
+      uses: cicirello/jacoco-badge-generator@v2
       with:
         jacoco-csv-path: target/site/jacoco/jacoco.csv
         badge-output-path: coverage/badge.svg

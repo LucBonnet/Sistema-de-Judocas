@@ -1,0 +1,116 @@
+package test.java.org.fpij.jitakyoei.model.dao;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import main.java.org.fpij.jitakyoei.model.beans.Aluno;
+import main.java.org.fpij.jitakyoei.model.beans.Endereco;
+import main.java.org.fpij.jitakyoei.model.beans.Entidade;
+import main.java.org.fpij.jitakyoei.model.dao.DAO;
+import main.java.org.fpij.jitakyoei.model.dao.DAOImpl;
+import main.java.org.fpij.jitakyoei.util.DatabaseManager;
+
+public class EntidadeDaoTest {
+  private static DAO<Entidade> entidadeDao;
+  private static Endereco endereco;
+  private static Entidade entidade;
+
+  @BeforeClass
+  public static void setUp() {
+    DatabaseManager.setEnviroment(DatabaseManager.TEST);
+
+    endereco = new Endereco();
+    endereco.setBairro("Dirceu");
+    endereco.setCep("64078-213");
+    endereco.setCidade("Teresina");
+    endereco.setEstado("PI");
+    endereco.setRua("Rua Des. Berilo Mota");
+
+    entidade = new Entidade();
+    entidade.setNome("Academia 1");
+    entidade.setTelefone1("(88) 2802-1826");
+    entidade.setTelefone2("(88) 98516-2167");
+    entidade.setCnpj("60.580.350/0001-04");
+    entidade.setEndereco(endereco);
+
+    entidadeDao = new DAOImpl<Entidade>(Entidade.class);
+  }
+
+  public static void clearDatabase() {
+    List<Entidade> all = entidadeDao.list();
+    for (Entidade each : all) {
+      entidadeDao.delete(each);
+    }
+    assertEquals(0, entidadeDao.list().size());
+  }
+
+  @Test
+  public void adicionarEntidadeTest() {
+    clearDatabase();
+
+    assertEquals(0, entidadeDao.list().size());
+
+    entidadeDao.save(entidade);
+
+    assertEquals(1, entidadeDao.list().size());
+    assertEquals("Academia 1", entidadeDao.get(entidade).getNome());
+    assertEquals("(88) 2802-1826", entidadeDao.get(entidade).getTelefone1());
+    assertEquals("(88) 98516-2167", entidadeDao.get(entidade).getTelefone2());
+    assertEquals("60.580.350/0001-04", entidadeDao.get(entidade).getCnpj());
+
+    assertEquals("Dirceu", entidadeDao.get(entidade).getEndereco().getBairro());
+    assertEquals("64078-213", entidadeDao.get(entidade).getEndereco().getCep());
+    assertEquals("PI", entidadeDao.get(entidade).getEndereco().getEstado());
+    assertEquals("Rua Des. Berilo Mota", entidadeDao.get(entidade).getEndereco().getRua());
+  }
+
+  @Test
+  public void atualizarEntidadeTest() {
+    clearDatabase();
+
+    assertEquals(0, entidadeDao.list().size());
+
+    Entidade entidade1 = new Entidade();
+    entidade1.copyProperties(entidade);
+
+    entidadeDao.save(entidade1);
+
+    assertEquals(1, entidadeDao.list().size());
+    assertEquals("Academia 1", entidadeDao.get(entidade1).getNome());
+
+    Entidade e1 = entidadeDao.get(entidade1);
+    e1.setNome("Nome entidade");
+    entidadeDao.save(e1);
+    assertEquals(1, entidadeDao.list().size());
+
+    e1 = entidadeDao.get(entidade1);
+    assertEquals("Nome entidade", e1.getNome());
+  }
+
+  @Test
+  public void buscarEntidadeTest() {
+    clearDatabase();
+
+    entidadeDao.save(entidade);
+
+    Entidade e = new Entidade();
+    e.setNome("Academia 1");
+
+    List<Entidade> result = entidadeDao.search(e);
+    assertEquals(1, result.size());
+    assertEquals("60.580.350/0001-04", result.get(0).getCnpj());
+
+    e = new Entidade();
+    e.setNome("Academia");
+
+    result = entidadeDao.search(e);
+    assertEquals(0, result.size());
+
+    clearDatabase();
+    assertEquals(0, entidadeDao.list().size());
+  }
+}

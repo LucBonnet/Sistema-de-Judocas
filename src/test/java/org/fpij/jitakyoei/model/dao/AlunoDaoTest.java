@@ -248,11 +248,4 @@ public class AlunoDaoTest {
 
 		assertFalse(aluno2.equals(aluno));
 	}
-
-	@AfterClass
-	public static void closeDatabase() {
-		clearDatabase();
-		DatabaseManager.close();
-	}
-
 }

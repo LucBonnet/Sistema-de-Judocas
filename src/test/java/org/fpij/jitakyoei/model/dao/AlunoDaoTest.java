@@ -117,6 +117,18 @@ public class AlunoDaoTest {
 	}
 
 	@Test
+	public void salvarAlunoComInformacoesInsuficientesTest() {
+		clearDatabase();
+
+		Aluno a = new Aluno();
+		Filiado f = new Filiado();
+		a.setFiliado(f);
+		assertFalse(alunoDao.save(a));
+
+		assertEquals(0, alunoDao.list().size());
+	}
+
+	@Test
 	public void atualizarAlunoTest() throws Exception {
 		clearDatabase();
 		assertEquals(0, alunoDao.list().size());

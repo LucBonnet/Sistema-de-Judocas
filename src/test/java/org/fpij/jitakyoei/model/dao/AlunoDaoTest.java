@@ -194,7 +194,7 @@ public class AlunoDaoTest {
 	}
 
 	@Test
-	public void buscarAlunoTest() throws Exception {
+	public void buscarAlunoCadastradoTest() throws Exception {
 		clearDatabase();
 		alunoDao.save(aluno);
 
@@ -208,11 +208,26 @@ public class AlunoDaoTest {
 		assertEquals("036.464.453-27", result.get(0).getFiliado().getCpf());
 
 		clearDatabase();
-		assertEquals(0, alunoDao.search(a).size());
 	}
 
 	@Test
-	public void compararAlunosTest() {
+	public void buscarAlunoNaoCadastradoTest() throws Exception {
+		clearDatabase();
+		alunoDao.save(aluno);
+
+		Filiado f = new Filiado();
+		f.setNome("João");
+		Aluno a = new Aluno();
+		a.setFiliado(f);
+
+		List<Aluno> result = alunoDao.search(a);
+		assertEquals(0, result.size());
+
+		clearDatabase();
+	}
+
+	@Test
+	public void compararAlunosIguaisTest() {
 		clearDatabase();
 
 		alunoDao.save(aluno);

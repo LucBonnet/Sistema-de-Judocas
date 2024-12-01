@@ -1,6 +1,7 @@
 package test.java.org.fpij.jitakyoei.model.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -120,6 +121,17 @@ public class ProfessorDaoTest {
 
     assertEquals("Academia 1", professorDao.get(professor).getEntidades().get(0).getNome());
     assertEquals("Academia 2", professorDao.get(professor).getEntidades().get(1).getNome());
+  }
+
+  @Test
+  public void salvarProfessorComDadosInsuficientesTest() {
+    clearDatabase();
+
+    Filiado filiado = new Filiado();
+    Professor p1 = new Professor();
+    p1.setFiliado(filiado);
+
+    assertFalse(professorDao.save(p1));
   }
 
   @Test

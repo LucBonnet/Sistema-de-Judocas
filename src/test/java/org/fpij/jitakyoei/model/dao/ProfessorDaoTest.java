@@ -1,6 +1,7 @@
 package test.java.org.fpij.jitakyoei.model.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +15,7 @@ import main.java.org.fpij.jitakyoei.model.beans.Endereco;
 import main.java.org.fpij.jitakyoei.model.beans.Entidade;
 import main.java.org.fpij.jitakyoei.model.beans.Filiado;
 import main.java.org.fpij.jitakyoei.model.beans.Professor;
+import main.java.org.fpij.jitakyoei.model.beans.Rg;
 import main.java.org.fpij.jitakyoei.model.dao.DAO;
 import main.java.org.fpij.jitakyoei.model.dao.DAOImpl;
 import main.java.org.fpij.jitakyoei.util.DatabaseManager;
@@ -38,6 +40,10 @@ public class ProfessorDaoTest {
     endereco.setEstado("PI");
     endereco.setRua("Rua Des. Berilo Mota");
 
+    Rg rg = new Rg();
+    rg.setNumero("359844650");
+    rg.setOrgaoExpedidor("SSP-SP");
+
     f1 = new Filiado();
     f1.setNome("Matheus");
     f1.setCpf("206.561.170-79");
@@ -45,6 +51,9 @@ public class ProfessorDaoTest {
     f1.setDataCadastro(new Date());
     f1.setId(87131L);
     f1.setEndereco(endereco);
+    f1.setTelefone1("(11) 87483-9281");
+    f1.setTelefone2("(11) 87413-7541");
+    f1.setRg(rg);
 
     entidades = new ArrayList<>();
 
@@ -94,7 +103,7 @@ public class ProfessorDaoTest {
 
     assertEquals(professorDao.list().size(), 0);
 
-    professorDao.save(professor);
+    assertTrue(professorDao.save(professor));
 
     assertEquals(professorDao.list().size(), 1);
 
